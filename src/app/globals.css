@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.maateen.me/kalpurush/font.css');
 
 /* :root {
   --foreground-rgb: 0, 0, 0;
@@ -36,4 +37,12 @@ body {
 
 * {
   box-sizing: border-box;
+
+}
+
+body {
+  background-color: #FFFFFF;
+  font-family: kalpurush;
+
+
 }
