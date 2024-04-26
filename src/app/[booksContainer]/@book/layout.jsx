@@ -1,11 +1,35 @@
-"use client"
+
+
+import BooksContainer from "../../components/BooksContainer/BooksContainer"
+import { getAllData } from "../../../utils/dataFetch"
+const data = getAllData()
+console.log(data);
+
+// export const generateMetadata
+
+const layout = ({ params }) => {
+    console.log(params, "d");
+
+    return (
+        <div>
+
+            <BooksContainer generateMetadata />
+
+        </div>
+    );
+};
+
+export default layout;
+
+
+/* "use client"
 
 import { useEffect, useState } from "react";
-import SearchBar from "../SearchBar/SearchBar";
-import Section from "../Section/Section"
+import SearchBar from "../../components/SearchBar/SearchBar";
+import Section from "../../components/Section/Section"
 
-const BooksContainer = ({ d }) => {
-    console.log(d);
+
+const BooksContainer = () => {
     const [isActive, setIsActive] = useState({
         book: true,
         chapter: false
@@ -29,9 +53,9 @@ const BooksContainer = ({ d }) => {
             .then(res => res.json())
             .then(data => setData(data))
     }, [])
+    console.log(data, "d");
     return (
         <div className=" pt-5  pl-3 ">
-
             <div className="booksName rounded-xl  items-center flex flex-col h-[81vh]  w-[350px]  bg-[#FFFFFF] " >
                 <div className="books-chapter flex">
                     <div className={`${isActive.book ? "bg-[#2B9E76] text-white" : ""} h-[52px] w-[175px] rounded-ss-xl cursor-pointer flex justify-center items-center`}
@@ -66,4 +90,4 @@ const BooksContainer = ({ d }) => {
     );
 };
 
-export default BooksContainer;
+export default BooksContainer; */
