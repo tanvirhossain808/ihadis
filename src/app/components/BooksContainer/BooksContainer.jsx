@@ -1,15 +1,16 @@
 "use client"
-
+import { getChaptersData } from "../../../utils/dataFetch"
 import { useEffect, useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import Section from "../Section/Section"
 
-const BooksContainer = ({ d }) => {
-    console.log(d);
+const BooksContainer = () => {
+
     const [isActive, setIsActive] = useState({
         book: true,
         chapter: false
     })
+    const [chapters, setChapters] = useState([])
     const handleBookSection = () => {
         setIsActive({
             chapter: false,
@@ -25,10 +26,41 @@ const BooksContainer = ({ d }) => {
     }
     const [data, setData] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/")
-            .then(res => res.json())
-            .then(data => setData(data))
+        async function fetchData() {
+            fetch("http://localhost:5000/")
+                .then(res => res.json())
+                .then(datas => datas.map(data => {
+                    return {
+                        ...data,
+                        isActive: data.id === 1 ? true : false
+                    }
+                }))
+                .then(data => setData(data))
+
+            const chaptersData = await getChaptersData()
+            setChapters(chaptersData)
+        }
+        fetchData
+
+        return fetchData
+
     }, [])
+    console.log(chapters);
+
+    const getChapter = async (id) => {
+        setData((pre) => {
+
+            return pre.filter(data => data.isActive = data.id === id)
+
+
+        })
+
+
+
+
+    }
+
+
     return (
         <div className=" pt-5  pl-3 ">
 
@@ -54,7 +86,7 @@ const BooksContainer = ({ d }) => {
 
 
                     {
-                        data.map(book => <Section key={book.id} title={book.title} numbers={book.number_of_hadis} h="h-[100px]" w="w-[315px]" code={book.abvr_code} />)
+                        (isActive.book ? data : chapters).map(book => <Section key={book.id} title={book.title} id={book.id} isSelected={isActive.book ? book.isActive : chapters.isActive} numbers={isActive.book ? book.number_of_hadis : book.hadis_range} h="h-[100px]" w="w-[315px]" code={isActive.book ? book.abvr_code : book.number} getChapter={getChapter} isBookTrue={isActive.book} />)
                     }
                 </div>
 

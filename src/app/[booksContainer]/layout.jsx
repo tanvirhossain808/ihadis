@@ -9,12 +9,13 @@ const layout = ({ book, bookSelection }) => {
             <Header />
             <div className="bookContainer  flex ">
                 <Navbar />
-                {/* {book} */}
+
                 <div className="bg-[#F2F4F6] flex w-screen rounded-3xl p-2">
-                    {/* <BooksContainer /> */}
+
                     {
                         // bookSelection
                         book
+                        // <BooksContainer />
                     }
 
                 </div>
