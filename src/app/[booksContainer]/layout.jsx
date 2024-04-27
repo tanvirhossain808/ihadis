@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar/Navbar"
 import BooksContainer from "../components/BooksContainer/BooksContainer"
 
 
-const layout = ({ book, bookSelection }) => {
+const layout = ({ book, hadithSection }) => {
     return (
         <div className="h-screen">
             <Header />
@@ -18,8 +18,9 @@ const layout = ({ book, bookSelection }) => {
                         // <BooksContainer />
                     }
 
+                    {/* {hadithSection} */}
+                    {hadithSection}
                 </div>
-
 
             </div>
 
